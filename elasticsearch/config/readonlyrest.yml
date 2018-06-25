@@ -1,0 +1,37 @@
+readonlyrest:
+    enable: true
+    response_if_req_forbidden: Forbidden!
+
+     # IMPORTANT FOR LOGIN/LOGOUT TO WORK
+    prompt_for_basic_auth: false
+
+    access_control_rules:
+    - name: Master
+      type: allow
+      api_keys: ["dojT0SCTUg8fD7pBW9LizgqXsxUIQku4iO8LG73S"]
+
+    - name: Write
+      type: allow
+      api_keys: ["XX7RlatKbwxGnHlruox8Nn4kxpeNZVBFdarFjSuQ"]
+      actions: ["indices:data/read/*","indices:data/write/index"]
+
+    - name: Read
+      type: allow
+      api_keys: ["6FNNHNenvpjOxeTVoJrXBYh7CbVIszygP5CVScsb"]
+      actions: ["indices:data/read/*"]
+
+    - name: "::ADMIN::"
+      auth_key: admin:dev
+      kibana_access: admin
+
+    - name: "::KIBANA-SRV::"
+      auth_key: kibana:kibana
+
+    - name: "::FIRST BLOCK::"
+ #     hosts: ["127.0.0.1"]
+      type: allow
+      
+
+
+rest.action.multi.allow_explicit_index: false
+
